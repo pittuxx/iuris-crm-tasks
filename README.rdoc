@@ -1,0 +1,6 @@
+= Iuris::Tasks
+
+This project rocks and uses MIT-LICENSE.
+
+Add this line to core application.css and comment for testing other engines
+ *= require 'iuris/tasks/tasks'

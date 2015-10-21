@@ -1,0 +1,35 @@
+<!-- GET /admin/tasks -->
+<h2 class="pull-left">Tareas</h2>
+
+<%= render 'admin/shared/nav' %>
+
+<hr>
+<div class="panel panel-primary">
+  <div class="panel-heading">Mis Tareas</div>
+  <div class="table-responsive">
+    <table class="table table-responsive">
+      <thead>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Contenido</th>
+        <th>Creado</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <%- @tasks.each do |task| %>
+        <tr class="<%= task.try(:state) %>">
+          <td><%= task.id %></td>
+          <td><%= task.title %></td>
+          <td><%= task.content.truncate_words(8) %></td>
+          <td><%= l(task.created_at, format: :custom) %></td>
+          <td><%= link_to icon_task, [iuris, task], title: 'Ver la tarea' %></td>
+          <td><%= link_to icon_edit, iuris.edit_task_path(task), title: 'Editar a tarea' %></td>
+          <td><%= link_to icon_trash, [iuris, task], method: :delete, data: {confirm: 'Está segur@ de que desea eliminar la tarea de la lista?'}, title: 'Eliminar la tarea' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

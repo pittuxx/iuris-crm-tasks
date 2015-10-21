@@ -1,0 +1,12 @@
+<h2>Nueva Tarea</h2>
+<hr>
+
+<%= form_for([iuris, @task]) do |f| %>
+	<%= render 'form', f: f %>
+	<div class="form-group">
+		<div>
+			<%= f.submit 'Crear Tarea', class: 'btn btn-primary' %>
+			<%= link_to 'Volver', iuris.tasks_path, class: 'btn btn-default' %>
+		</div>
+	</div>
+<% end %>

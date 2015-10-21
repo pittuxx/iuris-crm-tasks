@@ -1,0 +1,5 @@
+<li role="presentation" class="<%= active(iuris.admin_tasks_path) %>">
+	<%= link_to iuris.admin_tasks_path do %>
+		Tareas <span class="badge"><%#= Iuris::Tasks::Task.count %><%= @tasks.count %></span>
+	<% end %>
+</li>

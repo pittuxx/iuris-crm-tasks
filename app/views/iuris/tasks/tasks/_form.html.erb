@@ -1,0 +1,47 @@
+
+<div class="row">
+  <div class="col-md-8">
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form-group">
+      <%= f.label :title, class: 'control-label' %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content, class: 'control-label' %>
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :user_id, class: 'control-label' %>
+      <%= f.select :user_id, Iuris::User.all.collect {|p| [p.email, p.id]}, {selected: current_user.id}, class: 'form-control' %>
+    </div>
+  <%- if Iuris::Core.avaiable?(:contacts) %>
+    <div class="form-group">
+      <%= f.label :contact_id, class: 'control-label' %>
+      <%= f.select :contact_id, Iuris::Contacts::Contact.all.collect {|p| [p.email, p.id]}, {include_blank: true}, class: 'form-control' %>
+    </div>
+  <% end %>
+    <div class="form-group">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-default <%= 'active' if @task.state == 'pending' %>">
+          <%= f.radio_button(:state, :pending) %> Pendiente
+        </label>
+        <label class="btn btn-default <%= 'active' if @task.state == 'waiting' %>">
+          <%= f.radio_button(:state, :waiting) %> En espera
+        </label>
+        <label class="btn btn-default <%= 'active' if @task.state == 'done' %>">
+          <%= f.radio_button(:state, :done) %> Hecho
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

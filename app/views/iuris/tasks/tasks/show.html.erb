@@ -1,0 +1,36 @@
+<!--<p id="notice"><%#= notice %></p>-->
+<h2><%= @task.title %></h2>
+<hr>
+<div class="row">
+	<div class="col-md-8">
+		<table class="show-task">
+			<tbody>
+				<tr>
+					<td><strong>Título:</strong></td>
+					<td><%= @task.title %></td>
+				</tr>
+				<tr>
+					<td><strong>Contenido:</strong></td>
+					<td><%= @task.content %></td>
+				</tr>
+				<tr>
+					<td><strong>Usuario:</strong></td>
+					<td><%= @task.user.email %></td>
+				</tr>
+				<tr>
+					<td><strong>Contacto:</strong></td>
+					<td><%= link_to @task.contact.first_name + ' ' + @task.contact.last_name, 
+							iuris.contact_path(@task.contact) %></td>
+				</tr>
+				<tr>
+					<td><strong>Estado:</strong></td>
+					<td><div class="circle <%= @task.state %>"></div></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<hr>
+
+<%= link_to 'Edit', iuris.edit_task_path(@task), class: 'btn btn-primary' %> 
+<%= link_to 'Back', iuris.tasks_path, class: 'btn btn-default' %>
