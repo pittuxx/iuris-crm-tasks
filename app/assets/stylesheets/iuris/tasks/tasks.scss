@@ -16,15 +16,14 @@
 	background-color: red;
 }*/
 tr.pending, div.pending {
-	background-color: lightcoral;
+	background-color: rgba(240,128,128,0.5);
 }
 tr.waiting, div.waiting {
-	background-color: #F2F5A9;
+	background-color: rgba(242,245,169,0.7);
 }
 tr.done, div.done {
-	background-color: lightgreen;
-}
-.circle {
+	background-color: rgba(144,238,144,0.4);
+}.circle {
 	width: 1em;
 	height: 1em;
 	border-radius: 50px;

@@ -19,8 +19,8 @@
 				</tr>
 				<tr>
 					<td><strong>Contacto:</strong></td>
-					<td><%= link_to @task.contact.first_name + ' ' + @task.contact.last_name, 
-							iuris.contact_path(@task.contact) %></td>
+					<td><%= @task.contact ? link_to(@task.contact.first_name + ' ' + @task.contact.last_name, 
+						iuris.contact_path(@task.contact)) : '...' %></td>
 				</tr>
 				<tr>
 					<td><strong>Estado:</strong></td>

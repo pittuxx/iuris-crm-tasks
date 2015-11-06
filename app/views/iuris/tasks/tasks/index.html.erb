@@ -9,29 +9,31 @@
     Tareas
   </div>
   <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <th>ID</th>
-        <th>Título</th>
-        <th>Contenido</th>
-        <th>Creado</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </thead>
-      <tbody>
-        <%- @tasks.reverse.each do |task| %>
-        <tr class="<%= task.try(:state) %>">
-          <td><%= task.id %></td>
-          <td><%= task.title %></td>
-          <td><%= task.content.truncate_words(8) %></td>
-          <td><%= l(task.created_at, format: :custom) %></td>
-          <td><%= link_to icon_task, [iuris, task], title: 'Ver la tarea' %></td>
-          <td><%= link_to icon_edit, iuris.edit_task_path(task), title: 'Editar a tarea' %></td>
-          <td><%= link_to icon_trash, [iuris, task], method: :delete, data: {confirm: 'Está segur@ de que desea eliminar la tarea de la lista?'}, title: 'Eliminar la tarea' %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <table class="table table-bordered" id="datatable">
+    <thead>
+      <th>Fecha</th>
+      <th>Título</th>
+      <th>Contenido</th>
+      <th>Contacto</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <%- @tasks.reverse.each do |task| %>
+      <tr class="<%= task.try(:state) %>">
+        <td><%= l(task.created_at, format: :custom) %></td>
+        <td><%= task.title %></td>
+        <td><%= task.content.truncate_words(8) %></td>
+        <td><%= task.contact ? task.contact.first_name + ' ' + task.contact.last_name : '...' %></td>
+        <td><%= task.state %></td>
+        <td><%= link_to icon_task, [iuris, task], title: 'Ver la tarea' %></td>
+        <td><%= link_to icon_edit, iuris.edit_task_path(task), title: 'Editar a tarea' %></td>
+        <td><%= link_to icon_trash, [iuris, task], method: :delete, data: {confirm: 'Está segur@ de que desea eliminar la tarea de la lista?'}, title: 'Eliminar la tarea' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 </div>
